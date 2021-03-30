@@ -65,13 +65,13 @@ const useStyles = makeStyles({
   },
 })
 
-const valueToSeconds = val => +Number(val / 1000).toFixed(2)
+const valToSeconds = val => +Number(val / 1000).toFixed(2)
 
 const logToChartData = (logData) => logData
   .filter(d => d.value)
   .map(d => ({
     date: dayjs(d.startTime).format('MMM D hh:mm'),
-    val: valueToSeconds(d.value),
+    val: valToSeconds(d.value),
     path: d.location
   }))
 
@@ -144,6 +144,10 @@ function App() {
     fetchData({ unit, unitNum: value })
   }
 
+  const handelUpdate = () => {
+    fetchData({ unit, unitNum })
+  }
+
   if (isError) return <h1>Error!</h1>
   
   return (
@@ -152,7 +156,7 @@ function App() {
         <h1 className={classes.title}>
           <CachedIcon
             className={clsx(classes.updateButton, loading && 'rotating')}
-            onClick={fetchData}
+            onClick={handelUpdate}
           />
           {loading && ' Loading...'}
         </h1>
