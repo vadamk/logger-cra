@@ -6,9 +6,11 @@ import {
   XAxis,
   YAxis,
   Legend,
+  Label,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
+  Brush,
 } from 'recharts';
 import { makeStyles } from '@material-ui/core';
 
@@ -36,11 +38,11 @@ const CustomTooltip = ({ active, payload, label }) => {
     return (
       <div className={classes.customTooltip}>
         <p className={classes.paragraph}>
-          <b>Value:</b>{' '}{payload[0].val} ms</p>
-        <p className={classes.paragraph}>
           <b>Date:</b>{' '}{label}</p>
         <p className={classes.paragraph}>
           <b>Path:</b>{' '}{payload[0].payload.path}</p>
+        <p className={classes.paragraph}>
+          <b>Value:</b>{' '}{payload[0].payload.val} ms</p>
         <p className={classes.paragraph}>
           <b>Avg:</b>{' '}{payload[0].payload.avg}</p>
       </div>
@@ -89,9 +91,17 @@ function ReCharts({ data }) {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" />
-        <YAxis />
+        <YAxis>
+          <Label value="TTFB (s)" angle={-90} offset={-15} position="left" />
+        </YAxis>
         <Tooltip content={<CustomTooltip />} />
-        <Legend onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+        <Brush dataKey="name" height={30} stroke="#8884d8" />
+        <Legend
+          verticalAlign="top"
+          wrapperStyle={{ lineHeight: '40px' }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        />
         <Line type="monotone" dataKey="val" strokeOpacity={valOpacity} stroke="#8884d8" activeDot={{ r: 8 }} />
         <Area type="monotone" dataKey="avg" fillOpacity={avgOpacity} stroke="#FF7F50" fill="#FF7F50" dot={false} />
       </ComposedChart>
