@@ -14,8 +14,7 @@ import CachedIcon from '@material-ui/icons/Cached';
 
 import ReCharts from './ReCharts'
 
-// const BASIC_URL = 'https://www.lysq.click/'
-const BASIC_URL = 'http://localhost:8081'
+const BASIC_URL = 'https://www.lysq.click/'
 
 const OPTIONS = [
   {
