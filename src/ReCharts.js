@@ -42,7 +42,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         <p className={classes.paragraph}>
           <b>Path:</b>{' '}{payload[0].payload.path}</p>
         <p className={classes.paragraph}>
-          <b>Value:</b>{' '}{payload[0].payload.val} ms</p>
+          <b>Value:</b>{' '}{payload[0].payload.val} s</p>
         <p className={classes.paragraph}>
           <b>Avg:</b>{' '}{payload[0].payload.avg}</p>
       </div>
