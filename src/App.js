@@ -78,7 +78,7 @@ const logToChartData = (logData) => logData
 
 const addAverageData = (points) => {
   const dateValuePoints = points.map(d => ({
-    date: dayjs(d.date).format('YYYY/MM/DD HH:mm'),
+    date: dayjs(d.date).format('YYYY/MM/DD HH:00'),
     val: d.val,
   }))
 
@@ -96,7 +96,7 @@ const addAverageData = (points) => {
   })
 
   return points.map(point => {
-    const roundedDate = dayjs(point.date).format('YYYY/MM/DD HH:mm')
+    const roundedDate = dayjs(point.date).format('YYYY/MM/DD HH:00')
     return {
       ...point,
       avg: avgPoints.find(p => p.date === roundedDate)?.val,
